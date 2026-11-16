@@ -3,6 +3,31 @@
 Link to project: https://mini-project-1-flask-app.onrender.com/
 
 
+## Intentions
+The intention behind this project was to create a sense of fear and unease surrounding the amount of personal information we share online. We are already aware that our data is being collected,tracked and sometimes sold to third parties. We hear about data breaches, privacy violations and surveillance so frequently that they have almost become a normal part of living in the digital age but we wanted to question something beyond that: what is the worst that could actually happen with our data?
+There is something unsettling about unknowingly becoming a part of a survey, a marketing campaign or a database that you never volunteered for. Your information is being passed around, analysed and sold to people and companies you have never encountered without your knowledge or consent. It makes me wonder how much of our everyday lives are actually our own decisions.
+Sometimes I sit down and wonder whether that song I discovered on a random Wednesday morning, one that isn't particularly famous and somehow feels like it belongs only to me, was actually a personalized recommendation disguised as a coincidence. Almost as if the song found me rather the other way around. The same goes for the clothes we buy, the products we suddenly feel so drawn to, or those seemingly irresistible 50% discounts on items that perhaps were never that expensive to begin with. How much of what we like, want, and eventually purchase is genuinely driven by us, and how much has been carefully influenced by the information we unknowingly give away?
+`We want people to take a moment to reconsider their relationship with the internet and the amount of themselves they willingly or unknowingly put online. Does the internet know more about you than your next door neighbour, your friends or maybe even your roommate? How comfortable are you with that?
+Ultimately, this project is about making the invisible feel uncomfortable. We want people to question the convenience they have grown accustomed to and recognize that behind every personalized experience, there’s highly an exchange of information they never consciously agreed to. 	
+
+
+## Motivations
+Data is an intermediary aspect to imposing larger systems, as Mimi Onuoha outlines: first used for basic application support, data can imply conclusion about the user, the object of the data, that they never consented to sharing. This can be exploitative without the user realizing it. I find this inspiring because these processes happen on the machine side, then only after data is algorithmically synthesized does it become human readable. For this project, we thought it would be interesting to synthesize the data algorithmically in a way that a user can see it; especially in the time of AI, when the weights of large verticies models are often hidden from the user.
+
+*“data we’re willing to share can imply conclusions that we don’t want to share.” - Bruce Schneier, from Mimi Onuoha’s The Point of Collection p3*
+
+The cookie vending machine makes your data the product: by selecting an item, you are served your own data. I would find it fascinating to design something that makes heavily biased or ridiculous assumptions on the user based on data provided, making connections that are offensive, caricaturistic conclusions to the data provided.
+	
+*"Contemporary perception is machinic to large degrees. The spectrum of human vision only covers a tiny part of it" -Hito Steryl, A Sea of Data: Apophenia and Pattern (Mis-)Recognition p1*
+
+Steryl emphasizes that human/user perception is limited. As more data is collected and the internet becomes largely a place where this unintelligable by the human mind alone data is stored, we give up our ability to be primary interpreters of data. This is so interesting because the internet has always been a place adapted to us with UI and UX, and algorithms to interpret and organize the noise. As this space grows and everything become digitalized, these algorithmic intermediaries become translators for us.
+
+*“Imagine a world of enslaved objects remorsefully scrutinizing you” -Hito Steryl, A Sea of Data: Apophenia and Pattern (Mis-)Recognition p6*
+
+How we implemented the AI bot was inspired by Hito Steryls concept of apophenia: the human and algorithmic tendency to perceive meaningful patterns, order, or connections between completely unrelated or random data. Since AI is increasingly responsible for the algorithmic processing of our data, we felt it was appropriate to include an AI analyzer in the project. The bot receives the cookie information as the user requests it, and makes assumptions about the user, creating a personality assessment of the user. 
+
+
+
 ## Running in terminal (my personal notes)
 conda activate FlaskEnvProj
 
@@ -57,3 +82,6 @@ OUTPUT:
 - Never give disclaimers. Treat the generated response as a definite fact. 
 
 Now roast this visitor." 
+
+
+## Resources 

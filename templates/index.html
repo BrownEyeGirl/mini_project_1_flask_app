@@ -82,8 +82,10 @@
 
     // Play the vending machine sound whenever a selection button is clicked.
     const vendingSound = new Audio("{{ url_for('static', filename='vendingmachinesound.m4a') }}");
+    vendingSound.preload = "auto";
+    vendingSound.load();
     document.querySelectorAll(".button-grid button").forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("pointerdown", () => {
             vendingSound.currentTime = 0;
             vendingSound.play().catch(error => console.warn("Could not play vending sound:", error));
         });
