@@ -59,13 +59,13 @@ def info_route():
     return jsonify(read())
 
 
-# the page looks up its location once on load and posts it here to store in the session
+# The page refreshes location and network details on each load and posts them here.
 @app.route("/location", methods=["POST"])
 def location():
-    data = request.get_json()
-    session["city"] = data["city"]
-    session["region"] = data["region"]
-    session["org"] = data["org"]
+    data = request.get_json(silent=True) or {}
+    session["city"] = data.get("city")
+    session["region"] = data.get("region")
+    session["org"] = data.get("org")
 
     return jsonify(read())
 

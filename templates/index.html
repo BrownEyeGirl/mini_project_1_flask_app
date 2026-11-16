@@ -96,10 +96,7 @@
 
             // make the saved timestamp readable
             if (info.first_visit) {
-                const visitDate = new Date(info.first_visit);
-                info.first_visit = info.timezone
-                    ? visitDate.toLocaleDateString(undefined, { timeZone: info.timezone })
-                    : visitDate.toLocaleDateString();
+                info.first_visit = new Date(info.first_visit).toLocaleDateString();
             }
 
             document.getElementById("output").textContent = fill(btn.dataset.text, info);
@@ -116,17 +113,19 @@
         });
     });
 
-    // on page load: if Flask has no location yet, look it up once and save it in the session
-    {% if not info.city %} // shows error but works fine? 
+    // Refresh the visitor's location and network details on every page load.
     (async () => {
         const d = await (await fetch("https://ipwho.is/")).json();
         await fetch("/location", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ city: d.city, region: d.region, org: d.connection?.org })
+            body: JSON.stringify({
+                city: d.city,
+                region: d.region,
+                org: d.connection?.org
+            })
         });
     })();
-    {% endif %}
 
 //     const out = document.getElementById("oracleOutput");
 // document.getElementById("oracleBtn").onclick = async () => {
