@@ -85,21 +85,24 @@
             document.getElementById("footer").textContent = fill(btn.dataset.footer || "", info);
 
             document.getElementById("personality").textContent = "Loading user assumptions..."; 
-            const prompt = await (await fetch("/prompt")).text(); 
 
-            document.getElementById("personality").textContent = prompt; 
+            // send prompt info 
+            const context = document.getElementById("output").textContent;
+            console.log("context: " + context)
+            const prompt = await (await fetch(`/prompt?context=${encodeURIComponent(context)}`)).text();
+            document.getElementById("personality").innerHTML = prompt; 
 
         });
     });
 
     // on page load: if Flask has no location yet, look it up once and save it in the session
-    {% if not info.city %}
+    {% if not info.city %} // shows error but works fine? 
     (async () => {
         const d = await (await fetch("https://ipwho.is/")).json();
         await fetch("/location", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ city: d.city, region: d.region, org: d.connection.org })
+            body: JSON.stringify({ city: d.city, region: d.region, org: d.connection?.org })
         });
     })();
     {% endif %}
