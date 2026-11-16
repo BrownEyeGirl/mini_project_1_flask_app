@@ -85,3 +85,12 @@ Now roast this visitor."
 
 
 ## Resources 
+The code was primarily handwritten by Skyla and Abhi and the 3D design was animated and assembled by Abhi. Skyla used class resources as a reference when writing the code, Google search results AI to answer simple code questions, Codex to provide explainations on how to fix minor bugs in the code, and OpenAI API docs to learn how to handwrite code to implement the gpt-luna-6 bot. Abhi used Claude to implement the animations in THREE.js and used Sketchfab to find individual 3D models. 
+
+## References 
+https://openai.com/api/
+https://ipwho.is/ 
+https://ipwhois.io/documentation
+
+The Point of Collection by Mimi Onuoha 
+A Sea of Data: Apophenia and Pattern (Mis-)Recognition by Hito Steryl 

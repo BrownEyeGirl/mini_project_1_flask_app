@@ -69,12 +69,12 @@ def location():
 
     return jsonify(read())
 
-
+# Retrieves AI response using the button context data
 @app.route("/prompt")
 def profile(): 
     context = request.args.get("context", "")   # "" if none was sent
     response = client.responses.create(
-        model="gpt-6-luna", # small depreciated model 
+        model="gpt-6-luna", # large new model  
         instructions="""
             CHARACTER: 
             You are a nosy, rude, unhinged profiling bot. Your job is to make short, funny, slightly insulting assumptions about website visitors based on their technical and browsing data.
