@@ -25,6 +25,9 @@ def read():
         "clicks": session.get("clicks", 0),
         "tab_leaves": session.get("tab_leaves", 0),
         "first_visit": session.get("first_visit"),
+        "city": session.get("city"),
+        "region": session.get("region"),
+        "org": session.get("org"),
     }
 
     # live stats are not saved, they are measured fresh each time
@@ -58,22 +61,25 @@ def info_route():
     return jsonify(read())
 
 
+# the page looks up its location once on load and posts it here to store in the session
+@app.route("/location", methods=["POST"])
+def location():
+    data = request.get_json()
+    session["city"] = data["city"]
+    session["region"] = data["region"]
+    session["org"] = data["org"]
+    return jsonify(read())
+
+
 @app.route("/prompt")
 def profile(): 
     response = client.responses.create(
         model="gpt-6-luna", # small depreciated model 
-        instructions="Look at the users data and profile their personality into one type of website user. take the users website usage data and make assumptions, inspired by the quote: the data we share implies conclusions we dont want to share. Hint at the users strengths and weaknesses, profile their personalities, write in lowercase. Be outrageous with your assumptions. Do not give a disclaimer that this is just speculation, present this as fact. ",
+        instructions="just say hi",
         input= f"Take this user information and draw conclusions: {json.dumps(read())}"
     )
     return response.output_text
 
-# @app.route("/personality") 
-# def person_route(): 
-#     # quick request to the ai api 
-    
-#     return response.output_text
 
-
-print(app.secret_key)
 if __name__ == "__main__":
-    app.run(debug=True, port=51232) # change port if its not loading, sometimes it glitches.
+    app.run(debug=True, port=1111) # change port if its not loading, sometimes it glitches.
