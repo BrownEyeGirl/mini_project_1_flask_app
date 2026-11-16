@@ -2,6 +2,12 @@
 {% block title %}Mini Tracker{% endblock %}
 {% block content %}
 
+<header class="site-header">
+    <h1>are we sharing too much?</h1>
+    <h4 id="header-text">cookie vending machine</h4>
+
+</header>
+
     <div class="parent-container">
         <div class="left-box">
             <!-- AI bot loaded here -->
@@ -15,38 +21,49 @@
         </div>
         <div class="right-box">
             <div class="info-box">
-                <h1 id="output">click a button</h1>
+                <h1 id="output">Make a selection: </h1>
             </div>
             <div class="button-grid">
                 <button
                     data-text="Cost: {disk_free_gb} GB of space left out of {disk_total_gb} GB."
-                    data-footer="Disk space is what's left for everything you haven't saved yet.">File</button>
-
+                    data-footer="Disk space is what's left for everything you haven't saved yet.">
+                  <img src="{{ url_for('static', filename='images/files.png') }}" alt="File" style="display: block;" />
+                </button>
                 <button
                     data-text="Your first visit was {first_visit}."
-                    data-footer="We will never forget your first visit.">Cake</button>
+                    data-footer="We will never forget your first visit.">
+                <img src="{{ url_for('static', filename='images/birthday.png') }}" alt="Cake" style="display: block;" />
+                </button>
 
                 <button
                     data-text="Cost: {ram_free_gb} GB of RAM free out of {ram_total_gb} GB."
-                    data-footer="RAM is the memory this page is using right now.">Cookie</button>
+                    data-footer="RAM is the memory this page is using right now.">
+                    <img src="{{ url_for('static', filename='images/cookies.png') }}" alt="Cookie" style="display: block;" />
+                </button>
 
                 <button
                     data-text="You have clicked {clicks} times and left this tab {tab_leaves} times."
-                    data-footer="Every click and every tab leave is being counted.">ADHD Pill</button>
+                    data-footer="Every click and every tab leave is being counted.">
+                    <img src="{{ url_for('static', filename='images/pills.png') }}" alt="ADHD Meds" style="display: block;" />
+                </button>
 
                 <button
                     data-text="Departing from {city}, {region} on {org}'s network."
-                    data-footer="Your network already told us where you are leaving from.">Airplane</button>
+                    data-footer="Your network already told us where you are leaving from.">
+                    <img src="{{ url_for('static', filename='images/flights.png') }}" alt="Airplane" style="display: block;" />
+                </button>
 
                 <button
                     id="exitBtn"
                     data-text="Make a selection: "
-                    data-footer="">Exit</button>
+                    data-footer="">
+                <img src="{{ url_for('static', filename='images/exit.png') }}" alt="Exit" style="display: block;" />
+            </button>
             </div>
         </div>
     </div>
 
-    <footer class="fixed-footer" id="footer">Click a button</footer>
+    <footer class="fixed-footer" id="footer"></footer>
 
     <script>
 
