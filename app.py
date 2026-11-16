@@ -9,17 +9,15 @@ import json
 app = Flask(__name__)
 
 
-# 1. Load the variables from the .env file into the environment
+# Load the variables from the .env file into the environment
 load_dotenv()
 
-# 2. Initialize the OpenAI client (it automatically reads OPENAI_API_KEY)
+# Initialize the OpenAI client (it automatically reads OPENAI_API_KEY, either in .env file or in render application)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+app.secret_key = 'BAD_SECRET_KEY' # needed to sign the session cookie ( uses a placeholder like this for testing)
 
-# needed to sign the session cookie ( uses a placeholder like this for testing)
-app.secret_key = 'BAD_SECRET_KEY'
-
-# build the info dictionary: this visitor's session values + live system stats
+# build the info session dictionary: this visitor's session values + live system stats
 def read():
     info = {
         "clicks": session.get("clicks", 0),
@@ -30,7 +28,7 @@ def read():
         "org": session.get("org"),
     }
 
-    # live stats are not saved, they are measured fresh each time
+    # live stats are not saved, they are measured fresh each time from js 
     info.update({
         "ram_free_gb": round(psutil.virtual_memory().available / 1e9, 1), # turns into gb and rounds to nearest 10th 
         "ram_total_gb": round(psutil.virtual_memory().total / 1e9, 1), # ''
@@ -39,15 +37,15 @@ def read():
     })
     return info
 
+# Loads page, logs first visit, sends initial info
 @app.route("/")
 def index():
-    # first visit from THIS browser, only saved once
-    if "first_visit" not in session:
+    if "first_visit" not in session:  # first visit from this browser, only saved once
         session["first_visit"] = datetime.now().isoformat(timespec="seconds")
 
     return render_template("index.html", info=read())
 
-# add one to an event (clicks or tab_leaves), store in the session, return totals
+# Add one to an event (clicks or tab_leaves), store in the session, return totals
 @app.route("/log", methods=["POST"])
 def log():
     event = (request.get_json(silent=True) or {}).get("event")
@@ -55,7 +53,7 @@ def log():
         session[event] = session.get(event, 0) + 1
     return jsonify(read())
 
-# read-only route for the buttons (does not count as a click)
+# Read-only route for the buttons (does not count as a click)
 @app.route("/info")
 def info_route():
     return jsonify(read())

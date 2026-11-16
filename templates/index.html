@@ -26,7 +26,7 @@
             <div class="button-grid">
                 <button
                     data-text="Cost: {disk_free_gb} GB of space left out of {disk_total_gb} GB."
-                    data-footer="Disk space is what's left for everything you haven't saved yet.">
+                    data-footer="The size of the file has been be spiked to consume the rest of your disk space.">
                   <img src="{{ url_for('static', filename='images/files.png') }}" alt="File" style="display: block;" />
                 </button>
                 <button
@@ -37,7 +37,7 @@
 
                 <button
                     data-text="Cost: {ram_free_gb} GB of RAM free out of {ram_total_gb} GB."
-                    data-footer="RAM is the memory this page is using right now.">
+                    data-footer="We utilize your remaining RAM to slow down your computer.">
                     <img src="{{ url_for('static', filename='images/cookies.png') }}" alt="Cookie" style="display: block;" />
                 </button>
 
@@ -79,17 +79,6 @@
 
     // count clicks
     addEventListener("click", () => log("clicks"));
-
-    // Play the vending machine sound whenever a selection button is clicked.
-    const vendingSound = new Audio("{{ url_for('static', filename='vendingmachinesound.m4a') }}");
-    vendingSound.preload = "auto";
-    vendingSound.load();
-    document.querySelectorAll(".button-grid button").forEach(button => {
-        button.addEventListener("pointerdown", () => {
-            vendingSound.currentTime = 0;
-            vendingSound.play().catch(error => console.warn("Could not play vending sound:", error));
-        });
-    });
 
     // count tab leaves
     document.addEventListener("visibilitychange", () => {
