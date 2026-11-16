@@ -7,7 +7,7 @@ Link to project: https://mini-project-1-flask-app.onrender.com/
 ![Intro Page](screengrabs/intropage.png)
 ![Files Page](screengrabs/filespage.png)
 ![Birthday Page](screengrabs/birthdaypage.png)
-![Cookie Page](screengrabs/cookieopage.png)
+![Cookie Page](screengrabs/cookiepage.png)
 ![Pills Page](screengrabs/pillspage.png)
 
 ## Intentions
