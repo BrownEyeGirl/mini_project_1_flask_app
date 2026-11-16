@@ -24,6 +24,7 @@ def read():
         "clicks": session.get("clicks", 0),
         "tab_leaves": session.get("tab_leaves", 0),
         "first_visit": session.get("first_visit"),
+        "timezone": session.get("timezone"),
         "city": session.get("city"),
         "region": session.get("region"),
         "org": session.get("org"),
@@ -70,6 +71,7 @@ def location():
         visit_timezone = ZoneInfo(timezone_name) if timezone_name else timezone.utc
     except (ZoneInfoNotFoundError, TypeError):
         visit_timezone = timezone.utc
+    session["timezone"] = visit_timezone.key
 
     if "first_visit" not in session:
         session["first_visit"] = datetime.now(visit_timezone).isoformat(timespec="seconds")

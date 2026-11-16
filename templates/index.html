@@ -96,7 +96,10 @@
 
             // make the saved timestamp readable
             if (info.first_visit) {
-                info.first_visit = new Date(info.first_visit).toLocaleString();
+                const visitDate = new Date(info.first_visit);
+                info.first_visit = info.timezone
+                    ? visitDate.toLocaleString(undefined, { timeZone: info.timezone })
+                    : visitDate.toLocaleString();
             }
 
             document.getElementById("output").textContent = fill(btn.dataset.text, info);
@@ -114,7 +117,7 @@
     });
 
     // on page load: if Flask has no location yet, look it up once and save it in the session
-    {% if not info.city %} // shows error but works fine? 
+    {% if not info.city or not info.timezone %}
     (async () => {
         const d = await (await fetch("https://ipwho.is/")).json();
         await fetch("/location", {
