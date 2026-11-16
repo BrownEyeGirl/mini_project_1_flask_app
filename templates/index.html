@@ -120,7 +120,12 @@
         await fetch("/location", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ city: d.city, region: d.region, org: d.connection?.org })
+            body: JSON.stringify({
+                city: d.city,
+                region: d.region,
+                org: d.connection?.org,
+                timezone: d.timezone
+            })
         });
     })();
     {% endif %}
