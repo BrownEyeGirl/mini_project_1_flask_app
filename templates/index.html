@@ -80,6 +80,15 @@
     // count clicks
     addEventListener("click", () => log("clicks"));
 
+    // Play the vending machine sound whenever a selection button is clicked.
+    const vendingSound = new Audio("{{ url_for('static', filename='vendingmachinesound.m4a') }}");
+    document.querySelectorAll(".button-grid button").forEach(button => {
+        button.addEventListener("click", () => {
+            vendingSound.currentTime = 0;
+            vendingSound.play().catch(error => console.warn("Could not play vending sound:", error));
+        });
+    });
+
     // count tab leaves
     document.addEventListener("visibilitychange", () => {
         if (document.hidden) log("tab_leaves");

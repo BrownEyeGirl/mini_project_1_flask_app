@@ -25,7 +25,7 @@ html, body {
   align-items: center;
   gap: 16px;
   width: 100%;
-  height: 70vh;
+  height: 50vh;
   padding: 60px;
 }
 
@@ -38,7 +38,7 @@ html, body {
 .middle-box {
   width: 90%;
   min-width: 0;
-  height: min(76vh, 760px);
+  height: min(66vh, 760px);
   justify-self: center;
   overflow: hidden;
 
@@ -63,7 +63,7 @@ h2{
 
 main{
     margin: 10px;
-    min-height:calc(82vh);
+    min-height:calc(30vh);
 }
 
 p {
