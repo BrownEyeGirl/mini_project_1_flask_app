@@ -98,8 +98,8 @@
             if (info.first_visit) {
                 const visitDate = new Date(info.first_visit);
                 info.first_visit = info.timezone
-                    ? visitDate.toLocaleString(undefined, { timeZone: info.timezone })
-                    : visitDate.toLocaleString();
+                    ? visitDate.toLocaleDateString(undefined, { timeZone: info.timezone })
+                    : visitDate.toLocaleDateString();
             }
 
             document.getElementById("output").textContent = fill(btn.dataset.text, info);
@@ -117,18 +117,13 @@
     });
 
     // on page load: if Flask has no location yet, look it up once and save it in the session
-    {% if not info.city or not info.timezone %}
+    {% if not info.city %} // shows error but works fine? 
     (async () => {
         const d = await (await fetch("https://ipwho.is/")).json();
         await fetch("/location", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                city: d.city,
-                region: d.region,
-                org: d.connection?.org,
-                timezone: d.timezone
-            })
+            body: JSON.stringify({ city: d.city, region: d.region, org: d.connection?.org })
         });
     })();
     {% endif %}

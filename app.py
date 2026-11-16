@@ -1,7 +1,6 @@
 import os, shutil, psutil
 from flask import Flask, render_template, jsonify, request, session
-from datetime import datetime, timezone
-from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from datetime import datetime
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -24,7 +23,6 @@ def read():
         "clicks": session.get("clicks", 0),
         "tab_leaves": session.get("tab_leaves", 0),
         "first_visit": session.get("first_visit"),
-        "timezone": session.get("timezone"),
         "city": session.get("city"),
         "region": session.get("region"),
         "org": session.get("org"),
@@ -42,6 +40,9 @@ def read():
 # Loads page, logs first visit, sends initial info
 @app.route("/")
 def index():
+    if "first_visit" not in session:  # first visit from this browser, only saved once
+        session["first_visit"] = datetime.now().isoformat(timespec="seconds")
+
     return render_template("index.html", info=read())
 
 # Add one to an event (clicks or tab_leaves), store in the session, return totals
@@ -61,20 +62,10 @@ def info_route():
 # the page looks up its location once on load and posts it here to store in the session
 @app.route("/location", methods=["POST"])
 def location():
-    data = request.get_json(silent=True) or {}
-    session["city"] = data.get("city")
-    session["region"] = data.get("region")
-    session["org"] = data.get("org")
-
-    timezone_name = (data.get("timezone") or {}).get("id")
-    try:
-        visit_timezone = ZoneInfo(timezone_name) if timezone_name else timezone.utc
-    except (ZoneInfoNotFoundError, TypeError):
-        visit_timezone = timezone.utc
-    session["timezone"] = visit_timezone.key
-
-    if "first_visit" not in session:
-        session["first_visit"] = datetime.now(visit_timezone).isoformat(timespec="seconds")
+    data = request.get_json()
+    session["city"] = data["city"]
+    session["region"] = data["region"]
+    session["org"] = data["org"]
 
     return jsonify(read())
 
