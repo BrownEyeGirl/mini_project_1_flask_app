@@ -1,5 +1,7 @@
 # What's the worst that could happen with your data? 
-### Mini Project 1 
+### CART 351 Mini Project 1
+By: Skyla and Abhi 
+
 Link to project: https://mini-project-1-flask-app.onrender.com/
 
 ## Screengrabs (program examples)
@@ -43,22 +45,22 @@ Pills Page:
 
 
 ## Creating a Render Template 
-To host the Flask app on render.com, we created a new web service and supplied the names of our required libraries in a requirements.txt file so they would be downloaded in the web app. 
+&emsp;To host the Flask app on render.com, we created a new web service and supplied the names of our required libraries in a requirements.txt file so they would be downloaded in the web app. 
 
-The build command tells the web app what libraries need to be loaded for our app to work properly. 
+&emsp;The build command tells the web app what libraries need to be loaded for our app to work properly. 
 ``` bash
 pip install -r requirements.txt
 ```
 
-The start command tells render.com how to launch the application after the build command runs. 
+&emsp;The start command tells render.com how to launch the application after the build command runs. 
 ``` bash
 gunicorn app:app
 ```
 
-Further, because the OpenAI API requires paid tokens to run, we included the secret key in the render build so it never gets leaked. In our GitHub builds we put the API key in a .env file and included a .gitignore file with .env in it so the repository pushes never include the secret key but the application still runs on our devices. 
+&emsp;Further, because the OpenAI API requires paid tokens to run, we included the secret key in the render build so it never gets leaked. In our GitHub builds we put the API key in a .env file and included a .gitignore file with .env in it so the repository pushes never include the secret key but the application still runs on our devices. 
 
 ## Prompt Engineering 
-To engineer the gpt-luna-6 bot, one of the most advanced GPT models, we wrote a prompt to instruct the behaviour. The text returned by our bot is in HTML so including it in the web application is more seamless because the bot can decide the content of the title, description, and italicized footer. 
+&emsp;To engineer the gpt-luna-6 bot, one of the most advanced GPT models, we wrote a prompt to instruct the behaviour. The text returned by our bot is in HTML so including it in the web application is more seamless because the bot can decide the content of the title, description, and italicized footer. 
 
 <b>Prompt</b>
 ```
@@ -93,12 +95,11 @@ Now roast this visitor."
 ```
 
 ## Resources 
-The code was handwritten by Skyla and Abhi and the 3D design was animated and assembled by Abhi. Skyla used class resources and past exercises to create the code, Google's AI overview results to answer simple code questions, Codex to provide explanations on how to fix minor bugs in the code, OpenAI API docs to learn how to handwrite code to implement the gpt-luna-6 bot, and ipwho.is documentation to implement location scraping from wifi. Abhi used Claude to explain how to implement the animations in THREE.js and he used Sketchfab to find individual 3D models, before assembling and animating them in Blender. 
+&emsp;The code was handwritten by Skyla and Abhi and the 3D design was animated and assembled by Abhi. Skyla used class resources and past exercises to create the code, Google's AI overview results to answer simple code questions, Codex to provide explanations on how to fix minor bugs in the code, OpenAI API docs to learn how to handwrite code to implement the gpt-luna-6 bot, and ipwho.is documentation to implement location scraping from wifi. Abhi used Claude to explain how to implement the animations in THREE.js and he used Sketchfab to find individual 3D models, before assembling and animating them in Blender. 
 
 ## References 
 https://openai.com/api/
 https://ipwho.is/ 
 https://ipwhois.io/documentation
-
 The Point of Collection by Mimi Onuoha 
 A Sea of Data: Apophenia and Pattern (Mis-)Recognition by Hito Steryl
