@@ -78,7 +78,7 @@ new GLTFLoader().load(
       'file': 'file',
       'cake': 'birthday cakeAction',
       'cookie': 'cookie',
-      'adhd pill': 'pill',
+      'adhd meds': 'pill',
       'airplane': 'airplane'
     };
 
@@ -88,12 +88,14 @@ new GLTFLoader().load(
     ]));
 
     document.querySelectorAll('.button-grid button').forEach((button) => {
-      const buttonName = button.textContent.trim().toLowerCase();
+      const buttonName = button.querySelector('img')?.alt.trim().toLowerCase();
       const clipName = animationForButton[buttonName];
       const action = clipName && actions.get(clipName.toLowerCase());
 
       if (action) {
         button.addEventListener('click', () => playOnly(action));
+      } else if (buttonName && animationForButton[buttonName]) {
+        console.warn(`No animation clip found for button "${buttonName}".`);
       }
     });
   },
